@@ -64,7 +64,7 @@ def grievances_view(request):
         form = GrievanceForm(request.POST)
         if form.is_valid():
             grievance = form.save(commit=False)
-            messages.success(request, f'Your complaint/feedback has been recorded.')
+            messages.success(request, f'Your complaint has been recorded.')
             grievance.save()  # Save the grievance object to the database
             return redirect('home')
         else:

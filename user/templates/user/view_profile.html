@@ -19,38 +19,33 @@
                             <p>{{ user.email }}</p>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="font-weight-bold">Startup Name:</label>
+                            <label class="font-weight-bold">Userame:</label>
                             <p>{{ user.username }}</p>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="font-weight-bold">Area of Operation:</label>
-                            <p>{{ user.area_of_operation }}</p>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="font-weight-bold">PAN Number:</label>
-                            <p>{{ user.pan_no }}</p>
+                            <label class="font-weight-bold">Name:</label>
+                            <p>{{ user.name }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="font-weight-bold">Startup Type:</label>
-                            <p>{{ user.startup_type }}</p>
+                            <label class="font-weight-bold">Address:</label>
+                            <p>{{ user.registered_address }}</p>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="font-weight-bold">Officer Authorized Name:</label>
-                            <p>{{ user.officer_authorized }}</p>
+                            <label class="font-weight-bold">Mobile Number:</label>
+                            <p>{{ user.phone }}</p>
                         </div>
                     </div>
+                    {{ if user.is_doctor }}
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="font-weight-bold">Designation:</label>
                             <p>{{ user.designation }}</p>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="font-weight-bold">Mobile Number:</label>
-                            <p>{{ user.phone }}</p>
+                            <label class="font-weight-bold">License Number:</label>
+                            <p>{{ user.license_no }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -59,10 +54,11 @@
                             <p>{{ user.service_tax_no }}</p>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="font-weight-bold">TAN Number:</label>
-                            <p>{{ user.tan_no }}</p>
+                            <label class="font-weight-bold">Area of Operation:</label>
+                            <p>{{ user.area_of_operation }}</p>
                         </div>
                     </div>
+                    {{ endif }}
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="font-weight-bold">State:</label>
@@ -71,14 +67,6 @@
                         <div class="col-md-6 mb-3">
                             <label class="font-weight-bold">District:</label>
                             <p>{{ user.district }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="font-weight-bold">Registered Address:</label>
-                            <p>{{ user.registered_address }}</p>
-                        </div>
-                        <div class="col-md-6 mb-3">
                         </div>
                     </div>
                     <div class="text-center">

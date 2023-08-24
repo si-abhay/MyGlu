@@ -23,10 +23,10 @@
       "Vice Chairman / Vice President": {
         "ANJAW": [],
       },
-      "Managing Director / CEO": {
+      "Senior Doctor": {
         "ANJAW": [],
       },
-      "Co-Opted Director": {
+      "Junior Doctor": {
         "ANJAW": [],
       },
     }
@@ -52,18 +52,13 @@
                                     {{ form.email|as_crispy_field }}
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    {{ form.username|as_crispy_field }}
+                                    {{ form.hospital|as_crispy_field }}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    {{ form.officer_authorized|as_crispy_field }}
-                                </div>
                                 <div class="col-md-6 mb-3">
                                     {{ form.designation|as_crispy_field }}
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-6 mb-3">
                                     {{ form.phone|as_crispy_field }}
                                 </div>

@@ -71,6 +71,7 @@ class Profile(AbstractBaseUser):
     is_doctor = models.BooleanField(default=False)
 
     who = models.CharField(max_length=100)
+    hospital = models.CharField(max_length=100, null=True, blank=True)
     name = models.CharField(max_length=100)
     is_registered = models.BooleanField(default=False)
     is_accepted = models.BooleanField(default=False)

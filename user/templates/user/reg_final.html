@@ -910,15 +910,11 @@
       var courseSel = document.getElementById("id_state");
       var typeSel = document.getElementById("id_district");
       var desig = document.getElementById("id_designation");
-      var soc = document.getElementById("id_startup_type");
       for (var x in subjectObject) {
         courseSel.options[courseSel.options.length] = new Option(x, x);
       }
       for (var x in desigObject) {
         desig.options[desig.options.length] = new Option(x, x);
-      }
-      for (var x in socObject) {
-        soc.options[soc.options.length] = new Option(x, x);
       }
       courseSel.onchange = function() {
         // Empty Type dropdown
@@ -941,15 +937,7 @@
                         <form method="post">
                             {% csrf_token %}
                             <div class="row">
-                                  {{ form.startup_name|as_crispy_field }}
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    {{ form.officer_authorized|as_crispy_field }}
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    {{ form.designation|as_crispy_field }}
-                                </div>
+                                  {{ form.name|as_crispy_field }}
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -961,7 +949,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    {{ form.startup_type|as_crispy_field }}
+                                {{ form.phone|as_crispy_field }}
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     {{ form.registered_address|as_crispy_field }}
@@ -972,20 +960,20 @@
                                     {{ form.area_of_operation|as_crispy_field }}
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    {{ form.pan_no|as_crispy_field }}
+                                    {{ form.license_no|as_crispy_field }}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    {{ form.tan_no|as_crispy_field }}
-                                </div>
+                              <div class="col-md-6 mb-3">
+                                  {{ form.hospital|as_crispy_field }}
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                  {{ form.designation|as_crispy_field }}
+                              </div>
+                          </div>
+                            <div class="row">
                                 <div class="col-md-6 mb-3">
                                     {{ form.service_tax_no|as_crispy_field }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    {{ form.phone|as_crispy_field }}
                                 </div>
                             </div>
                             <div class="row">

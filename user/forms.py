@@ -13,12 +13,12 @@ class GrievanceForm(forms.ModelForm):
 
 
 class ProfileCreationForm(UserCreationForm):
-    startup_idea = forms.CharField(widget=forms.TextInput)
+    who = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'User or Doctor'}))
     email = forms.CharField(widget=forms.TextInput)
     username = forms.CharField(widget=forms.TextInput)
     class Meta:
         model = Profile
-        fields = ['username', 'email','startup_idea', 'password1', 'password2']
+        fields = ['username', 'email','who', 'password1', 'password2']
 
 class RegistrationForm(forms.ModelForm):
     

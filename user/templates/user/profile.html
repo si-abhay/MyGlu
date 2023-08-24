@@ -18,8 +18,8 @@
                     <p class="text-muted mb-0" style="font-size: 12px">Email:</p>
                     <p>{{ user.email }}</p>
                     {% if user.is_registered %}
-                        <p class="text-muted mb-0" style="font-size: 12px">StartUp Name:</p>
-                        <p>{{ user.startup_name }}</p>
+                        <p class="text-muted mb-0" style="font-size: 12px">Name:</p>
+                        <p>{{ user.name }}</p>
                     {% endif %}
                     {% if user.is_validated %}
                         <div class="row">
@@ -49,7 +49,7 @@
                 <h4 class="card-title font-weight-bold text-center">Annual Payment</h4>
                 <hr>
                 <div class="card-text">
-                    {% if user.is_accepted and not user.is_investor %}
+                    {% if user.is_accepted and not user.is_doctor %}
                         <p class="text-muted mb-0" style="font-size: 12px">Payment Status:</p>
                         {% if user.is_paid %}
                             <p>Paid</p>
@@ -62,12 +62,12 @@
                             <p>Payment is due, please <a href="{% url 'payment_page' %}">pay now</a></p>
                         {% endif %}
                     {% else %}
-                        {% if user.is_investor %}
+                        {% if user.is_doctor %}
                             <p class="text-muted mb-0" style="font-size: 12px">Not Required:</p>
-                            <p>Keep supporting the startups.</p>
+                            <p>Keep supporting the users.</p>
                         {% else %}
                             <p class="text-muted mb-0" style="font-size: 12px">Status:</p>
-                            <p>Waiting for Startup Details to be reviewed [ After validation step ]</p>
+                            <p>Waiting for Details to be reviewed [ After validation step ]</p>
                         {% endif %}
                     {% endif %}
                     <p id="vertical-space"></p>
@@ -77,7 +77,7 @@
     </div>
         <div class="row">
             <div class="col-sm-12">
-                {% if user.is_authenticated and user.is_investor %}
+                {% if user.is_authenticated and user.is_doctor %}
                     <div class="card p-4">
                         <h4 class="card-title font-weight-bold text-center">Blogs Posted</h4>
                         <hr>
