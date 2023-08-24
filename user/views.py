@@ -41,7 +41,7 @@ def reg_final(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             profile = get_object_or_404(Profile, username=request.user.username)
-            profile.name = form.cleaned_data.get('name')
+            profile.startup_name = form.cleaned_data.get('startup_name')
             profile.registered_address = form.cleaned_data.get('registered_address')
             profile.area_of_operation = form.cleaned_data.get('area_of_operation')
             profile.pan_no = form.cleaned_data.get('pan_no')
