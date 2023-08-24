@@ -32,7 +32,7 @@ def register(request):
             return redirect('login')
     else:
         form = ProfileCreationForm()
-    return render(request, 'startups/register.html', {'form': form})
+    return render(request, 'user/register.html', {'form': form})
 
 from django.shortcuts import get_object_or_404
 
@@ -41,7 +41,7 @@ def reg_final(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             profile = get_object_or_404(Profile, username=request.user.username)
-            profile.startup_name = form.cleaned_data.get('startup_name')
+            profile.name = form.cleaned_data.get('name')
             profile.registered_address = form.cleaned_data.get('registered_address')
             profile.area_of_operation = form.cleaned_data.get('area_of_operation')
             profile.pan_no = form.cleaned_data.get('pan_no')
@@ -60,7 +60,7 @@ def reg_final(request):
             return redirect('profile')
     else:
         form = RegistrationForm()
-    return render(request, 'startups/reg_final.html', {'form': form})
+    return render(request, 'user/reg_final.html', {'form': form})
 
 
 def grievances_view(request):
@@ -76,7 +76,7 @@ def grievances_view(request):
             print(form.errors)  # Print the form errors to the console for debugging purposes
     else:
         form = GrievanceForm()
-    return render(request, 'startups/grievances.html', {'form': form, 'Profile': Profile})
+    return render(request, 'user/grievances.html', {'form': form, 'Profile': Profile})
 
 from django.db.models import Q
 from django.core.paginator import Paginator
@@ -98,31 +98,31 @@ def blog(request):
     blog_posts = paginator.get_page(page_number)  # Get the blog posts for the specified page number
     
     tags = Tag.objects.all() 
-    return render(request, 'startups/blog.html', {'blog_posts': blog_posts, 'categories': categories, 'tags': tags})
+    return render(request, 'user/blog.html', {'blog_posts': blog_posts, 'categories': categories, 'tags': tags})
 
 def blog_category(request, category_id):
     category = Category.objects.get(id=category_id)
     blog_posts = Post.objects.filter(category=category).order_by('-date')
     categories = Category.objects.all() 
     tags = Tag.objects.all() 
-    return render(request, 'startups/blog.html', {'blog_posts': blog_posts, 'categories': categories, 'tags': tags})
+    return render(request, 'user/blog.html', {'blog_posts': blog_posts, 'categories': categories, 'tags': tags})
 
 def blog_tag(request, tag_id):
     tag = Tag.objects.get(id=tag_id) 
     blog_posts = Post.objects.filter(tags=tag).order_by('-date')
     categories = Category.objects.all()
     tags = Tag.objects.all() 
-    return render(request, 'startups/blog.html', {'blog_posts': blog_posts, 'categories': categories, 'tags': tags})
+    return render(request, 'user/blog.html', {'blog_posts': blog_posts, 'categories': categories, 'tags': tags})
 
 
 def blogsingle(request):
-    return render(request, 'startups/blogsingle.html')
+    return render(request, 'user/blogsingle.html')
 
 
 
 @login_required 
 def profile(request):
-    return render(request, 'startups/profile.html')
+    return render(request, 'user/profile.html')
     
 
 @login_required
@@ -132,7 +132,7 @@ def payment_page(request):
 
     paypal_dict = {
                 'business': settings.PAYPAL_RECEIVER_EMAIL,
-                'amount': '300.50',
+                'amount': '30.00',
                 'item_name': 'Annual Fee Payment',
                 'invoice': str(uuid.uuid4()),
                 'currency_code': 'USD',
@@ -142,7 +142,7 @@ def payment_page(request):
             }
     form = PayPalPaymentsForm(initial=paypal_dict)
     context = {'form': form}  
-    return render(request, 'startups/payment_page.html', context)
+    return render(request, 'user/payment_page.html', context)
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -181,15 +181,15 @@ def update_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, f'Your account has been updated.')
-            return render(request,'startups/profile.html')
+            return render(request,'user/profile.html')
     else:
         form = AccountUpdateForm(instance=request.user)
-    return render(request, 'startups/update_profile.html', {'form': form})
+    return render(request, 'user/update_profile.html', {'form': form})
 
 
 @login_required
 def view_profile(request):
-    return render(request, 'startups/view_profile.html', {'user': request.user})
+    return render(request, 'user/view_profile.html', {'user': request.user})
 
 @login_required
 def submit_request(request):
@@ -207,7 +207,7 @@ def submit_request(request):
         
         return redirect('profile') 
     
-    return render(request, 'startups/submit_request.html')
+    return render(request, 'user/submit_request.html')
 
 
 @login_required
@@ -229,4 +229,4 @@ def create_blog(request):
         # Render the form for creating a new blog post
         form = BlogForm()
     
-    return render(request, 'startups/create_blog.html', {'form': form})
+    return render(request, 'user/create_blog.html', {'form': form})
