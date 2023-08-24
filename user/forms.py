@@ -6,10 +6,10 @@ from .models import Grievance
 from phonenumber_field.formfields import PhoneNumberField
 
 class GrievanceForm(forms.ModelForm):
-    complain_startup = forms.ModelChoiceField(queryset=Profile.objects.filter(is_accepted=True))
+    complain_doctor = forms.ModelChoiceField(queryset=Profile.objects.filter(is_accepted=True))
     class Meta:
         model = Grievance
-        fields = ['username', 'email', 'phone', 'complain_type', 'complain_startup', 'complainXfeedback']
+        fields = ['username', 'email', 'phone', 'complain_type', 'complain_doctor', 'complain']
 
 
 class ProfileCreationForm(UserCreationForm):
@@ -24,18 +24,14 @@ class RegistrationForm(forms.ModelForm):
     
     registered_address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '1234 Main St'}))
     area_of_operation = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Locality'}))
-    pan_no = forms.CharField(widget=forms.TextInput)
-    tan_no = forms.CharField(widget=forms.TextInput)
-    startup_name = forms.CharField(widget=forms.TextInput)
-    officer_authorized = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Officer Name'}))
-    #phone = forms.CharField(widget=forms.TextInput)
+    license_no = forms.CharField(widget=forms.TextInput)
+    name = forms.CharField(widget=forms.TextInput)
     phone = PhoneNumberField(region='IN')
     service_tax_no = forms.CharField(widget=forms.TextInput)
-
+    hospital = forms.CharField(widget=forms.TextInput)
     state = forms.CharField(widget=forms.Select(choices=[]))
     designation = forms.CharField(widget=forms.Select(choices=[]))
     district = forms.CharField(widget=forms.Select(choices=[]))
-    startup_type = forms.CharField(widget=forms.Select(choices=[]))
     
 
     def __init__(self, *args, **kwargs):
@@ -47,7 +43,7 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['state','district','startup_type','startup_name','registered_address','area_of_operation', 'pan_no', 'tan_no','officer_authorized', 'designation','phone', 'service_tax_no']   
+        fields = ['state','district','name','registered_address','area_of_operation', 'license_no', 'designation','phone', 'service_tax_no','hospital']   
 
 
 class AccountUpdateForm(forms.ModelForm):
@@ -56,7 +52,7 @@ class AccountUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['email', 'username','officer_authorized', 'designation','phone']
+        fields = ['email', 'designation','phone','hospital']
 
     def __init__(self, *args, **kwargs):
         super(AccountUpdateForm, self).__init__(*args, **kwargs)

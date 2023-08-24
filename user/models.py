@@ -60,26 +60,18 @@ class Profile(AbstractBaseUser):
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     registered_address = models.CharField(max_length=200, null=True, blank=True)
     area_of_operation = models.CharField(max_length=200, null=True, blank=True)
-    pan_no = models.CharField(max_length=10, null=True, blank=True)
-    tan_no = models.CharField(max_length=10, null=True, blank=True)
-    officer_authorized = models.CharField(max_length=100, null=True, blank=True)
+    license_no = models.CharField(max_length=10, null=True, blank=True)
     designation = models.CharField(max_length=100, null=True, blank=True)
     is_paid = models.BooleanField(default=False)
     service_tax_no = models.CharField(max_length=20, null=True, blank=True)
     state = models.CharField(max_length=40, null=True, blank=True)
     district = models.CharField(max_length=40, null=True, blank=True)
-    startup_type = models.CharField(max_length=20, null=True, blank=True)
 
     is_validated = models.BooleanField(default=False)
-    is_investor = models.BooleanField(default=False)
+    is_doctor = models.BooleanField(default=False)
 
-    '''VALID_STATUS = (
-        ('Pending', 'Pending'),
-        ('Rejected', 'Rejected'),
-    )
-    display_validated = models.CharField(max_length=20, choices=VALID_STATUS, default='Pending')'''
-    startup_idea = models.CharField(max_length=1000)
-    startup_name = models.CharField(max_length=100)
+    who = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     is_registered = models.BooleanField(default=False)
     is_accepted = models.BooleanField(default=False)
     
@@ -133,8 +125,8 @@ class Grievance(models.Model):
     email = models.CharField(max_length=100)
     phone = models.CharField(max_length=10)
     complain_type = models.CharField(max_length=100)
-    complain_startup = models.CharField(max_length=100)
-    complainXfeedback = models.CharField(max_length=100)
+    complain_doctor = models.CharField(max_length=100)
+    complain = models.CharField(max_length=100)
     complain_date= models.DateTimeField(verbose_name='date of complain', auto_now_add=True)
 
     USERNAME_FIELD = 'id'

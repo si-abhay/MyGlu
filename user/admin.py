@@ -39,11 +39,11 @@ def export_selected_objects(modeladmin, request, queryset):
 admin.site.add_action(export_selected_objects)
 
 class ProfileAdmin(UserAdmin):
-    list_display = ('username','startup_name','email', 'is_paid','is_validated', 'is_investor','phone', 'pan_no', 'tan_no', 'service_tax_no')
-    search_fields = ('username', 'email','startup_name')
-    readonly_fields = ('date_joined', 'last_login','startup_name','username', 'email')
+    list_display = ('username','name','email', 'is_paid','is_validated', 'is_doctor','phone', 'license_no', 'service_tax_no')
+    search_fields = ('username', 'email','name')
+    readonly_fields = ('date_joined', 'last_login','name','username', 'email')
     filter_horizontal = ()
-    list_filter = ('is_validated','is_accepted','is_paid','is_registered','is_investor')
+    list_filter = ('is_validated','is_accepted','is_paid','is_registered','is_doctor')
     fieldsets = ()
     actions = [export_selected_objects,'validate_users']
     actions_description = "Export selected objects"
@@ -87,12 +87,12 @@ class CustomRequestAdmin(UserAdmin):
 
 @admin.register(Grievance)
 class CustomGrievanceAdmin(UserAdmin):
-    list_display = ('username', 'email', 'complain_date', 'phone', 'complain_type', 'complain_startup', 'complainXfeedback')
-    search_fields = ('username', 'email', 'complain_type', 'complain_startup')
+    list_display = ('username', 'email', 'complain_date', 'phone', 'complain_type', 'complain_doctor', 'complain')
+    search_fields = ('username', 'email', 'complain_type', 'complain_doctor')
     ordering = ['username']  # Update with a valid field name from the Grievance model
     readonly_fields = ('username',)  # Update with valid fields from the Grievance model
     filter_horizontal = ()
-    list_filter = ('complain_type', 'complain_startup')
+    list_filter = ('complain_type', 'complain_doctor')
     fieldsets = ()
     actions = [export_selected_objects]
     actions_description = "Export selected objects"

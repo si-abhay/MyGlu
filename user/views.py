@@ -25,10 +25,7 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            #password = form.cleaned_data.get('password1')
-            #user = authenticate(email=email, password=password)
             messages.success(request, f'Account created for {username}! Please log in.')
-            #login(request, user)
             return redirect('login')
     else:
         form = ProfileCreationForm()
@@ -41,22 +38,20 @@ def reg_final(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             profile = get_object_or_404(Profile, username=request.user.username)
-            profile.startup_name = form.cleaned_data.get('startup_name')
+            profile.name = form.cleaned_data.get('name')
             profile.registered_address = form.cleaned_data.get('registered_address')
             profile.area_of_operation = form.cleaned_data.get('area_of_operation')
-            profile.pan_no = form.cleaned_data.get('pan_no')
-            profile.tan_no = form.cleaned_data.get('tan_no')
-            profile.officer_authorized = form.cleaned_data.get('officer_authorized')
+            profile.license_no = form.cleaned_data.get('license_no')
             profile.phone = form.cleaned_data.get('phone')
             profile.service_tax_no = form.cleaned_data.get('service_tax_no')
             profile.state = form.cleaned_data.get('state')
             profile.district = form.cleaned_data.get('district')
-            profile.startup_type = form.cleaned_data.get('startup_type')
+            profile.hospital = form.cleaned_data.get('hospital')
             profile.designation = form.cleaned_data.get('designation')
             profile.is_registered = True
             profile.save()
 
-            messages.success(request, f'Startup details will be reviewed by admin.')
+            messages.success(request, f'Details will be reviewed by admin.')
             return redirect('profile')
     else:
         form = RegistrationForm()
