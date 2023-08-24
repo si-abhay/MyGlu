@@ -6,15 +6,15 @@ from django.db.models.functions import ExtractYear
 
 
 def info(request):
-    states = Profile.objects.filter(is_accepted=True).values_list('state', flat=True).distinct()
-    registration_years = Profile.objects.filter(is_accepted=True).dates('date_joined', 'year', order='DESC')
+    states = Profile.objects.filter(is_doctor=True).values_list('state', flat=True).distinct()
+    registration_years = Profile.objects.filter(is_doctor=True).dates('date_joined', 'year', order='DESC')
 
     if request.method == 'GET':
         state = request.GET.get('state', '')
         district = request.GET.get('district', '')
         registration_year = request.GET.get('registration_year', '')
 
-        filtered_data = Profile.objects.filter(is_accepted=True)
+        filtered_data = Profile.objects.filter(is_doctor=True)
 
         if state:
             filtered_data = filtered_data.filter(state=state)
@@ -25,7 +25,7 @@ def info(request):
         if registration_year:
             filtered_data = filtered_data.filter(date_joined__year=registration_year)
     else:
-        filtered_data = Profile.objects.filter(is_accepted=True)  # Show all data when no filters are applied
+        filtered_data = Profile.objects.filter(is_doctor=True)  # Show all data when no filters are applied
 
     context = {
         'states': states,
