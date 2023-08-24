@@ -70,7 +70,8 @@ class Profile(AbstractBaseUser):
     is_validated = models.BooleanField(default=False)
     is_doctor = models.BooleanField(default=False)
 
-    who = models.CharField(max_length=100)
+    #who = models.CharField(max_length=100)
+    who = models.IntegerField(default=0)
     hospital = models.CharField(max_length=100, null=True, blank=True)
     name = models.CharField(max_length=100)
     is_registered = models.BooleanField(default=False)

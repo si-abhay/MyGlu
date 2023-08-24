@@ -17,6 +17,7 @@ from user.views import (
     grievances_view,
     submit_request,
     reg_final,
+    reg_final_user,
     blog,
     blogsingle,
     blog_category,
@@ -56,6 +57,7 @@ urlpatterns = [
     path('submit-request/', submit_request, name='submit_request'),
 
     path('reg_final/', reg_final, name='reg_final'),
+    path('reg_final_user/', reg_final_user, name='reg_final_user'),
 
     path('blog/', blog, name='blog'),
     path('blogsingle/', blogsingle, name='blogsingle'),

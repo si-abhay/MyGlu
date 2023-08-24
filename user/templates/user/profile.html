@@ -33,7 +33,11 @@
                                 {% if user.is_registered %}
                                     <a href="{% url 'update_profile' %}" class="btn btn-outline-primary">Edit Profile</a>
                                 {% else %}
-                                <a href="{% url 'reg_final' %}" class="btn btn-outline-primary">Register Startup</a>
+                                    {% if user.who %}
+                                        <a href="{% url 'reg_final' %}" class="btn btn-outline-primary">Add Details</a>
+                                    {% else %}
+                                        <a href="{% url 'reg_final_user' %}" class="btn btn-outline-primary">Add Details</a>
+                                    {% endif %}
                                 {% endif %}
                             </div>
                         </div>
@@ -46,7 +50,7 @@
         </div>
         <div class="col-sm-12 col-md-6 pb-4">
             <div class="card p-4">
-                <h4 class="card-title font-weight-bold text-center">Annual Payment</h4>
+                <h4 class="card-title font-weight-bold text-center">Annual Premium Plan</h4>
                 <hr>
                 <div class="card-text">
                     {% if user.is_accepted and not user.is_doctor %}
@@ -59,7 +63,7 @@
                             <p>Due</p>
                             <p class="text-muted mb-0" style="font-size: 12px">Payment Due From:</p>
                             <p>{{ user.date_joined }}</p>
-                            <p>Payment is due, please <a href="{% url 'payment_page' %}">pay now</a></p>
+                            <p>Payment is due, please <a href="{% url 'payment_page' %}">Buy Now</a></p>
                         {% endif %}
                     {% else %}
                         {% if user.is_doctor %}
@@ -67,7 +71,7 @@
                             <p>Keep supporting the users.</p>
                         {% else %}
                             <p class="text-muted mb-0" style="font-size: 12px">Status:</p>
-                            <p>Waiting for Details to be reviewed [ After validation step ]</p>
+                            <p>Waiting for Details to be reviewed [ Add details first ]</p>
                         {% endif %}
                     {% endif %}
                     <p id="vertical-space"></p>
@@ -115,7 +119,7 @@
                                 {% endif %}
                             {% else %}
                                 <p class="text-muted mb-0" style="font-size: 12px">Status:</p>
-                                <p>Waiting for Details to be reviewed [ After validation step ]</p>
+                                <p>Waiting for Details to be reviewed [ Add details first ]</p>
                             {% endif %}
                         </div>
                         {% if user.is_accepted %}

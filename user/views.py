@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileCreationForm, AccountUpdateForm, GrievanceForm, RegistrationForm, BlogForm
+from .forms import ProfileCreationForm, AccountUpdateForm, GrievanceForm, RegistrationForm, BlogForm, RegistrationuserForm
 from .models import Profile, Grievance, Post, Tag, Category
 from datetime import datetime
 from decimal import Decimal
@@ -56,6 +56,25 @@ def reg_final(request):
     else:
         form = RegistrationForm()
     return render(request, 'user/reg_final.html', {'form': form})
+
+def reg_final_user(request):
+    if request.method == 'POST':
+        form = RegistrationuserForm(request.POST)
+        if form.is_valid():
+            profile = get_object_or_404(Profile, username=request.user.username)
+            profile.name = form.cleaned_data.get('name')
+            profile.registered_address = form.cleaned_data.get('registered_address')
+            profile.phone = form.cleaned_data.get('phone')
+            profile.state = form.cleaned_data.get('state')
+            profile.district = form.cleaned_data.get('district')
+            profile.is_registered = True
+            profile.save()
+
+            messages.success(request, f'Details will be reviewed by admin.')
+            return redirect('profile')
+    else:
+        form = RegistrationuserForm()
+    return render(request, 'user/reg_final_user.html', {'form': form})
 
 
 def grievances_view(request):

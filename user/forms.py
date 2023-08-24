@@ -6,14 +6,14 @@ from .models import Grievance
 from phonenumber_field.formfields import PhoneNumberField
 
 class GrievanceForm(forms.ModelForm):
-    complain_doctor = forms.ModelChoiceField(queryset=Profile.objects.filter(is_accepted=True))
+    complain_doctor = forms.ModelChoiceField(queryset=Profile.objects.filter(is_doctor=True))
     class Meta:
         model = Grievance
         fields = ['username', 'email', 'phone', 'complain_type', 'complain_doctor', 'complain']
 
 
 class ProfileCreationForm(UserCreationForm):
-    who = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'User or Doctor'}))
+    who = forms.ChoiceField(choices=((0,f'Patient/User'), (1,'Doctor')))
     email = forms.CharField(widget=forms.TextInput)
     username = forms.CharField(widget=forms.TextInput)
     class Meta:
@@ -45,6 +45,25 @@ class RegistrationForm(forms.ModelForm):
         model = Profile
         fields = ['state','district','name','registered_address','area_of_operation', 'license_no', 'designation','phone', 'service_tax_no','hospital']   
 
+class RegistrationuserForm(forms.ModelForm):
+    
+    registered_address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '1234 Main St'}))
+    name = forms.CharField(widget=forms.TextInput)
+    phone = PhoneNumberField(region='IN')
+    state = forms.CharField(widget=forms.Select(choices=[]))
+    district = forms.CharField(widget=forms.Select(choices=[]))
+    
+
+    def __init__(self, *args, **kwargs):
+        super(RegistrationuserForm, self).__init__(*args, **kwargs)
+        self.fields['state'].widget.attrs['onchange'] = 'updateDistricts()'
+        
+        for field_name, field in self.fields.items():
+            field.required = True
+
+    class Meta:
+        model = Profile
+        fields = ['state','district','name','registered_address', 'phone']   
 
 class AccountUpdateForm(forms.ModelForm):
     designation = forms.CharField(widget=forms.Select(choices=[]))
