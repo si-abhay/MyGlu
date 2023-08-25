@@ -28,9 +28,9 @@
     <link rel="stylesheet" type="text/css" href="{% static '/static/assets/vendor/swiper/swiper-bundle.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/static/assets/css/style.css' %}">
     {% if title %}
-        <title>STARTUP MANAGER Home - {{ title }}</title>
+        <title>MyGLU Home - {{ title }}</title>
     {% else %}
-        <title>STARTUP MANAGER Home</title>
+        <title>MyGLU Home</title>
     {% endif %}
     <style>
         .message-dialog {
@@ -42,13 +42,13 @@
 <body>
     <header id="header" class="fixed-top header-inner-pages">
         <div class="container d-flex align-items-center justify-content-between">
-            <h1 class="logo"><a href="{% url 'home' %}">MANAGER</a></h1>
+            <h1 class="logo"><a href="{% url 'home' %}">MyGLU</a></h1>
             <nav id="navbar" class="navbar">
                 <ul>
                     {% if user.is_authenticated %}
                     <li><a class="nav-link scrollto " href="{% url 'home' %}">Home</a></li>
                     <li><a class="nav-link scrollto " href="{% url 'blog' %}">Blogs</a></li>
-                    <li><a class="nav-link scrollto " href="{% url 'info' %}">Startups</a></li>
+                    <li><a class="nav-link scrollto " href="{% url 'info' %}">Doctors</a></li>
                     <li><a class="nav-link scrollto" href="{% url 'grievances' %}">Grievances</a></li>
                     <li><a class="nav-link scrollto " href="{% url 'profile' %}">Profile</a></li>
                     <li><a class="nav-link scrollto " href="{% url 'logout' %}">Logout</a></li>
@@ -56,7 +56,7 @@
                     {% else %}
                         <li><a class="nav-link scrollto" href="{% url 'home' %}">Home</a></li>
                         <li><a class="nav-link scrollto " href="{% url 'blog' %}">Blogs</a></li>
-                        <li><a class="nav-link scrollto " href="{% url 'info' %}">Startups</a></li>
+                        <li><a class="nav-link scrollto " href="{% url 'info' %}">Doctors</a></li>
                         <li><a class="nav-link scrollto" href="{% url 'grievances' %}">Grievances</a></li>
                         <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
@@ -103,7 +103,7 @@
         <div class="container d-md-flex py-3">
             <div class="me-md-auto text-center text-md-start">
                 <div class="copyright">
-                    &copy; Copyright <strong><span>STARTUP MANAGER</span></strong>.
+                    &copy; Copyright <strong><span>MyGLU</span></strong>.
                     All Rights Reserved
                 </div>
                 <div class="credits">
